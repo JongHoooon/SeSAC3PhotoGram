@@ -15,6 +15,7 @@ final class SearchViewController: BaseViewController {
         "pencil", "star", "person",
         "star.fill", "xmark", "person.circle"
     ]
+    var delegate: PassImageNameDelegate?
     
     // MARK: - Lifecycle
     override func loadView() {
@@ -36,6 +37,7 @@ final class SearchViewController: BaseViewController {
     override func configureView() {
         super.configureView()
         configureCollectionView()
+        mainView
     }
 }
 
@@ -72,13 +74,14 @@ extension SearchViewController: UICollectionViewDelegate {
     ) {
         print(imageList[indexPath.item])
         
-        NotificationCenter.default.post(
-            name: NSNotification.Name("SelectImage"),
-            object: nil,
-            userInfo: [
-                "name": imageList[indexPath.item]
-            ]
-        )
+//        NotificationCenter.default.post(
+//            name: .selectIamge,
+//            object: nil,
+//            userInfo: [
+//                "name": imageList[indexPath.item]
+//            ]
+//        )
+        delegate?.receiveNmae(name: imageList[indexPath.item])
         
         dismiss(animated: true)
     }

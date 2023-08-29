@@ -16,11 +16,16 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         configureView()
+        setConstraints()
     }
     
     // MARK: - Base Configuration
     func configureView() {
         print(#fileID, #function)
         view.backgroundColor = .systemBackground
+    }
+    
+    func setConstraints() {
+        
     }
 }
