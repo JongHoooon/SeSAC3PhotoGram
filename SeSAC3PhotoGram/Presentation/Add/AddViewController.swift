@@ -35,18 +35,19 @@ final class AddViewController: BaseViewController {
         
 //        ClassPublicExample.internalExample()
 //        ClassInternalExample
-    }
-    
-    // 중복 노티 방지 체크
-    // remove observer
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(selectImageNotificationObserver),
             name: .selectIamge,
             object: nil
         )
+    }
+    
+    // 중복 노티 방지 체크
+    // remove observer
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         print(#function)
         
 //        sesacShowActivityViewController(
@@ -102,6 +103,25 @@ final class AddViewController: BaseViewController {
         )
     }
 }
+
+extension AddViewController: UIImagePickerControllerDelegate,
+                             UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            mainView.photoImageView.image = image
+            dismiss(animated: true)
+        }
+    }
+}
+
 #warning("extension에서 override 불가능한 이유??")
 
 // MARK: - Private
@@ -120,17 +140,48 @@ private extension AddViewController {
     @objc
     func searchButtonClicked() {
         
-        let word = ["Apple", "Banna", "Cookie", "Cake", "Sky"]
-        
-        NotificationCenter.default.post(
-            name: NSNotification.Name("RecommandKeyword"),
-            object: nil,
-            userInfo: [
-                "word": word.randomElement()!
-            ]
+//        let word = ["Apple", "Banna", "Cookie", "Cake", "Sky"]
+//
+//        NotificationCenter.default.post(
+//            name: NSNotification.Name("RecommandKeyword"),
+//            object: nil,
+//            userInfo: [
+//                "word": word.randomElement()!
+//            ]
+//        )
+//        navigationController?.pushViewController(SearchViewController(), animated: true)
+            
+        let alertController = UIAlertController(
+            title: "",
+            message: "이미지를 어디서 가져올까요??",
+            preferredStyle: .actionSheet
         )
-        navigationController?.pushViewController(SearchViewController(), animated: true)
-//        present(SearchViewController(), animated: true)
+        
+        let gallery = UIAlertAction(
+            title: "갤러리에서 가져오기",
+            style: .default,
+            handler: { [weak self] _ in
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                self?.present(picker, animated: true)
+            }
+        )
+        let webSearch = UIAlertAction(
+            title: "웹에서 검색하기",
+            style: .default,
+            handler:  { [weak self] _ in
+                self?.present(SearchViewController(), animated: true)
+            }
+        )
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        [
+            gallery,
+            webSearch,
+            cancel
+        ].forEach { alertController.addAction($0) }
+        
+        present(alertController, animated: true)
     }
     
     @objc

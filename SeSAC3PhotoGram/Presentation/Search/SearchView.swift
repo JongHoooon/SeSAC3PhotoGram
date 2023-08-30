@@ -10,7 +10,7 @@ import UIKit
 final class SearchView: BaseView {
     
     // MARK: - UI
-    private let searchBar: UISearchBar = {
+    let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "검색어를 입력해주세요."
         return searchBar

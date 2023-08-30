@@ -20,11 +20,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .systemBackground
-//        let vc = AddViewController()
-//        let nav = UINavigationController(rootViewController: vc)
+        let vc = AddViewController()
+//        let vc = WebViewController()
+//        let vc = URLSessionViewController()
+
         
-        let vc = WebViewController()
-        window?.rootViewController = vc
+        let nav = UINavigationController(rootViewController: vc)
+        window?.rootViewController = nav
         window?.makeKeyAndVisible()
     }
 

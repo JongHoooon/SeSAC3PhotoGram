@@ -25,6 +25,9 @@ final class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mainView.searchBar.becomeFirstResponder()
+        mainView.searchBar.delegate = self
+        
         // addObserver보다 post가 먼저 신호를 보내서 신호를 받을 수 없다.
         NotificationCenter.default.addObserver(
             self,
@@ -37,7 +40,12 @@ final class SearchViewController: BaseViewController {
     override func configureView() {
         super.configureView()
         configureCollectionView()
-        mainView
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        mainView.searchBar.resignFirstResponder()
     }
 }
 
@@ -74,13 +82,13 @@ extension SearchViewController: UICollectionViewDelegate {
     ) {
         print(imageList[indexPath.item])
         
-//        NotificationCenter.default.post(
-//            name: .selectIamge,
-//            object: nil,
-//            userInfo: [
-//                "name": imageList[indexPath.item]
-//            ]
-//        )
+        NotificationCenter.default.post(
+            name: .selectIamge,
+            object: nil,
+            userInfo: [
+                "name": imageList[indexPath.item]
+            ]
+        )
         delegate?.receiveNmae(name: imageList[indexPath.item])
         
         dismiss(animated: true)
