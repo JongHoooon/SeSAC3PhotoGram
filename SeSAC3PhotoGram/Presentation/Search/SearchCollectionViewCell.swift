@@ -13,8 +13,16 @@ final class SearchCollectionViewCell: BaseCollectionViewCell {
         let imageView = UIImageView()
         imageView.backgroundColor = .lightGray
         imageView.contentMode = .scaleAspectFill
+        imageView.tintColor = .label
+        imageView.clipsToBounds = true
         return imageView
     }()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imageView.image = nil
+    }
     
     override func configureView() {
         contentView.addSubview(imageView)

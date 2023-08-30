@@ -133,7 +133,10 @@ private extension AddViewController {
         print(#function)
         
         if let name = notification.userInfo?["name"] as? String {
-            mainView.photoImageView.image = UIImage(systemName: name)
+            mainView.photoImageView.kf.setImage(
+                with: URL(string: name),
+                placeholder: ImageSpace.imagePlaceholder
+            )
         }
     }
     
@@ -239,7 +242,10 @@ extension AddViewController: PassDateDelegate {
 
 extension AddViewController: PassImageNameDelegate {
     func receiveNmae(name: String) {
-        mainView.photoImageView.image = UIImage(systemName: name)
+        mainView.photoImageView.kf.setImage(
+            with: URL(string: name),
+            placeholder: ImageSpace.imagePlaceholder
+        )
     }
 }
 

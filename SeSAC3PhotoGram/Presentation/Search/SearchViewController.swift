@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class SearchViewController: BaseViewController {
     
@@ -15,6 +16,7 @@ final class SearchViewController: BaseViewController {
         "pencil", "star", "person",
         "star.fill", "xmark", "person.circle"
     ]
+    private var photoURLs: [String] = []
     var delegate: PassImageNameDelegate?
     
     // MARK: - Lifecycle
@@ -45,6 +47,30 @@ final class SearchViewController: BaseViewController {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else { return }
+        
+        APIService.shared.requstCall(
+            of: PhotoURLPage.self,
+            api: .searchPhoto(query: query),
+            result: { [weak self] result in
+                switch result {
+                case let .success(value):
+                    print(value)
+                    if let urls = value.results?.compactMap({ $0.urls?.regular }) {
+                        self?.photoURLs = urls
+                        
+                        DispatchQueue.main.async {
+                            self?.mainView.collectionView.reloadData()
+                        }
+                    }
+                    
+                case let .failure(error):
+                    print(error)
+                }
+            }
+        )
+        
+        mainView.searchBar.text = ""
         mainView.searchBar.resignFirstResponder()
     }
 }
@@ -54,7 +80,7 @@ extension SearchViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return imageList.count
+        return photoURLs.count
     }
     
     func collectionView(
@@ -66,9 +92,12 @@ extension SearchViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? SearchCollectionViewCell else { return UICollectionViewCell() }
                 
-        let item = imageList[indexPath.item]
+        let item = photoURLs[indexPath.item]
         
-        cell.imageView.image = UIImage(systemName: item)
+        cell.imageView.kf.setImage(
+            with: URL(string: item),
+            placeholder: ImageSpace.imagePlaceholder
+        )
         
         return cell
     }
@@ -80,16 +109,16 @@ extension SearchViewController: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        print(imageList[indexPath.item])
+        print(photoURLs[indexPath.item])
         
         NotificationCenter.default.post(
             name: .selectIamge,
             object: nil,
             userInfo: [
-                "name": imageList[indexPath.item]
+                "name": photoURLs[indexPath.item]
             ]
         )
-        delegate?.receiveNmae(name: imageList[indexPath.item])
+        delegate?.receiveNmae(name: photoURLs[indexPath.item])
         
         dismiss(animated: true)
     }
