@@ -19,6 +19,10 @@ final class SearchViewController: BaseViewController {
     private var photoURLs: [String] = []
     var delegate: PassImageNameDelegate?
     
+    deinit {
+        print("deinit", self)
+    }
+    
     // MARK: - Lifecycle
     override func loadView() {
         view = mainView

@@ -20,6 +20,10 @@ final class TitleViewController: BaseViewController {
     // Closure - 1
     var completionHandler: ((String, Int, Bool) -> Void)?
     
+    deinit {
+        print("deinit", self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

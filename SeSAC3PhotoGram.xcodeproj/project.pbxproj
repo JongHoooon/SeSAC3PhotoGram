@@ -22,6 +22,8 @@
 		ED39095B2A9F2CF2005E2C61 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED39095A2A9F2CF2005E2C61 /* Photo.swift */; };
 		ED39095E2A9F31AC005E2C61 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = ED39095D2A9F31AC005E2C61 /* Kingfisher */; };
 		ED3909602A9F32B6005E2C61 /* ImgeSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED39095F2A9F32B6005E2C61 /* ImgeSpace.swift */; };
+		ED3909662AA01A73005E2C61 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3909652AA01A73005E2C61 /* HomeViewController.swift */; };
+		ED3909682AA01A8F005E2C61 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3909672AA01A8F005E2C61 /* HomeView.swift */; };
 		ED42BC512A9D7B6600657734 /* NSNotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED42BC502A9D7B6600657734 /* NSNotificationName+Extension.swift */; };
 		ED42BC532A9D7C7A00657734 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED42BC522A9D7C7A00657734 /* DateView.swift */; };
 		ED42BC552A9D7DB500657734 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED42BC542A9D7DB500657734 /* DateViewController.swift */; };
@@ -91,6 +93,8 @@
 		ED3909572A9F28BB005E2C61 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		ED39095A2A9F2CF2005E2C61 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		ED39095F2A9F32B6005E2C61 /* ImgeSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgeSpace.swift; sourceTree = "<group>"; };
+		ED3909652AA01A73005E2C61 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		ED3909672AA01A8F005E2C61 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		ED42BC502A9D7B6600657734 /* NSNotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotificationName+Extension.swift"; sourceTree = "<group>"; };
 		ED42BC522A9D7C7A00657734 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		ED42BC542A9D7DB500657734 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +171,15 @@
 				ED39095A2A9F2CF2005E2C61 /* Photo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		ED3909642AA01A5D005E2C61 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				ED3909652AA01A73005E2C61 /* HomeViewController.swift */,
+				ED3909672AA01A8F005E2C61 /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		ED42BC4C2A9D7AA700657734 /* Utils */ = {
@@ -258,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				EDF94D892A9C23EF008589CB /* Base */,
+				ED3909642AA01A5D005E2C61 /* Home */,
 				EDF94D8D2A9C272F008589CB /* Add */,
 				EDF94D8C2A9C2725008589CB /* Search */,
 				ED42BC4C2A9D7AA700657734 /* Utils */,
@@ -406,6 +420,7 @@
 				ED9FB70F2A9DC0D0001DFC48 /* ContentViewController.swift in Sources */,
 				ED3909482A9F1222005E2C61 /* APIKey.swift in Sources */,
 				ED3909552A9F23D0005E2C61 /* APIable.swift in Sources */,
+				ED3909662AA01A73005E2C61 /* HomeViewController.swift in Sources */,
 				EDF94D932A9C2FF0008589CB /* AddView.swift in Sources */,
 				EDF94D8F2A9C2741008589CB /* SearchViewController.swift in Sources */,
 				EDF94D972A9C365A008589CB /* BaseCollectionViewCell.swift in Sources */,
@@ -416,6 +431,7 @@
 				EDF94D8B2A9C23F5008589CB /* BaseViewController.swift in Sources */,
 				ED42BC532A9D7C7A00657734 /* DateView.swift in Sources */,
 				ED3909532A9F2302005E2C61 /* URLRequest+Extension.swift in Sources */,
+				ED3909682AA01A8F005E2C61 /* HomeView.swift in Sources */,
 				ED39094A2A9F128C005E2C61 /* Endpoint.swift in Sources */,
 				EDF94D952A9C3375008589CB /* SearchView.swift in Sources */,
 				ED39094F2A9F1FCE005E2C61 /* HTTPHeader.swift in Sources */,

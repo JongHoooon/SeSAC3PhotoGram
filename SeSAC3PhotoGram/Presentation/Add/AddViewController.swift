@@ -44,6 +44,10 @@ final class AddViewController: BaseViewController {
         )
     }
     
+    deinit {
+        print("deinit", self)
+    }
+    
     // 중복 노티 방지 체크
     // remove observer
     override func viewWillAppear(_ animated: Bool) {
@@ -196,8 +200,11 @@ private extension AddViewController {
     
     @objc
     func dateButtonClicked() {
-        let vc = DateViewController()
-        vc.delegate = self
+//        let vc = DateViewController()
+//        vc.delegate = self
+//        navigationController?.pushViewController(vc, animated: true)
+        
+        let vc = HomeViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
